@@ -1,10 +1,20 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[authenticate]
   before_action :set_card, only: %i[ show edit update destroy ]
 
   # GET /cards or /cards.json
   def index
     @cards = Card.all
+  end
+
+  def authenticate
+    service = CardAuthenticator.call(params[:address])
+
+    if service.result
+      render plain: service.card.name
+    else
+      render plain: '0'
+    end
   end
 
   # GET /cards/1 or /cards/1.json

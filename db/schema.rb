@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_115336) do
     t.string "address"
     t.string "name"
     t.datetime "last_login"
-    t.integer "login_count"
-    t.integer "status"
+    t.integer "login_count", default: 0
+    t.integer "status", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
