@@ -13,7 +13,7 @@ class CardsController < ApplicationController
     if service.result
       render plain: service.card.name
     else
-      render plain: '0'
+      render plain: '0', status: :unauthorized
     end
   end
 
